@@ -7,7 +7,7 @@
 
         <h2>Romax Homes 10</h2>
         <ol>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li>Romax Homes 10</li>
         </ol>
 
@@ -20,20 +20,20 @@
 
         <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
-            <div class="portfolio-content h-100">
-                <img src="assets/images/11.jpg" class="img-fluid" style="height: 100%;" alt="">
+            <div class="col-lg-4 col-md-6 portfolio-item filter-remodeling" v-for="product in products" :key="product.id">
+            <div class="portfolio-content h-100" v-if="product.product === 'Romax 10'">
+                <img :src="product.image" class="img-fluid" style="height: 100%;" alt="">
                 <div class="portfolio-info">
-                <h4 class="text-uppercase">Sold Out</h4>
-                <p>3 BEDROOM TERRACE DUPLEX</p>
-                <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                <h4 class="text-uppercase">{{product.status}}</h4>
+                <p>{{product.name}}</p>
+                <a :href="`/property/${product.id}`" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
             </div>
             </div><!-- End Projects Item -->
 
         
 
-        <div class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
+        <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
             <div class="portfolio-content h-100">
                 <img src="assets/images/13.jpg" class="img-fluid" style="height: 100%;" alt="">
                 <div class="portfolio-info">
@@ -42,7 +42,8 @@
                 <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
             </div>
             </div>
-        </div><!-- End Projects Item -->
+        </div> -->
+        <!-- End Projects Item -->
 
 
 
@@ -57,11 +58,35 @@
 </template>
 
 <script>
+    import axios from 'axios'
     import Navbar from '../components/Navbar.vue'
 export default {
     name : 'Romax10',
+    data(){
+        return{
+            products : []
+        }
+    },
     components : {
         Navbar
-    }
+    },
+    mounted(){
+        this.getProducts()
+    },
+    methods : {
+        getProducts(){
+            axios.get('http://127.0.0.1:8000/api/listsubproduct/')
+            .then(response =>{
+                let all_products = response.data
+                this.products = all_products.filter(prod=> prod.product === 'Romax 10')
+                console.log(response.data)
+                console.log(this.products)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
+    },
+
 }
 </script>

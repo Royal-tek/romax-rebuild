@@ -3,7 +3,7 @@
     <Navbar/>
     
     <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/breadcrumbs-bg.jpg');">
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/images/12.jpg'); background-attachment: fixed;">
     <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
         <h2>Contact</h2>
@@ -52,25 +52,27 @@
           </div><!-- End Google Maps -->
 
           <div class="col-lg-6">
-            <form  class="php-email-form">
+            
+            <form @submit.prevent="sendMail"  class="php-email-form">
               <div class="row gy-4">
                 <div class="col-lg-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  <input type="text"  class="form-control" v-model="fullname"  placeholder="Full Name" required>
                 </div>
                 <div class="col-lg-6 form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <input type="email" class="form-control" v-model="email"   placeholder="Your Email" required>
                 </div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                <input type="text" class="form-control" v-model="subject"  placeholder="Subject" required>
               </div>
               <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                <textarea class="form-control" v-model="message"  rows="5" placeholder="Message" required></textarea>
               </div>
-              <div class="my-3">
+              
+              <div class="my-2">
                 <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+                <!-- <div class="error-message"></div> -->
+                <div class="sent-messages py-3 text-center text-white" v-if="status">{{this.status}}</div>
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
@@ -84,9 +86,48 @@
 </template>
 
 <script>
+  import axios from 'axios'
     import Navbar from '../components/Navbar.vue'
 export default {
     name : 'Contact',
+    data(){
+      return{
+        fullname : '',
+        subject : '',
+        message : '',
+        email : '',
+        status : ''
+      }
+    },
+    mounted(){
+
+    },
+    methods :{
+      sendMail(){
+        const fd = new FormData()
+        fd.append('fullname', this.fullname)
+        fd.append('subject', this.subject)
+        fd.append('message', this.message)
+        fd.append('email', this.email)
+
+        axios.post('http://127.0.0.1:8000/api/contact/', fd)
+        .then(response =>{
+          this.status = "Message sent successfully"
+          setInterval(()=>{
+            this.status = ''
+          }, 2000)
+          this.fullname = ''
+          this.subject = ''
+          this.message = ''
+          this.email = ''
+          console.log(response.data)
+        })
+        .catch(err =>{
+          this.status = "Message send failure"
+          console.log(err)
+        })
+      }
+    },
     components : {
     Navbar
     
@@ -97,6 +138,11 @@ export default {
 <style lang="scss">
     .nav-links{
         text-decoration: none !important;
+    }
+    
+    .sent-messages{
+      width: 100%;
+      background-color: orange;
     }
 
 </style>

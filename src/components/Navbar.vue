@@ -23,7 +23,7 @@
                 <i class="bi bi-chevron-down dropdown-indicator"></i
               ></a>
               <ul>
-                <li ><router-link to="/romax10" class="dropdown-item">Romax Homes 10</router-link></li>
+                <li ><a href="/romax10" >Romax Homes 10</a></li>
                 <li><a href="#">Dropdown 2</a></li>
                 <li><a href="#">Dropdown 3</a></li>
                 <li><a href="#">Dropdown 4</a></li>
