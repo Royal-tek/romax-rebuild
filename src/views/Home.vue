@@ -20,22 +20,22 @@
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
         <nav id="navbar" class="navbar">
           <ul>
-            <li><a class="nav-link active" href="/" >Home</a></li>
-            <!-- <li><router-link to="/about">About Us</router-link></li> -->
-            <li><a href="/about">About Us</a></li>
+            <li><a :class="{active : $route.name == 'Home'}" class="nav-link " href="/" >Home</a></li>
+            
+            <li><a :class="{active : $route.name == 'About'}" href="/about">About Us</a></li>
             <li class="dropdown">
-              <a href="#"
+              <a href="#" :class="{active : $route.name == 'Properties1' || $route.name == 'Properties2' || $route.name == 'Properties3' || $route.name == 'Properties4' || $route.name == 'Property' }"
                 ><span>Our Projects</span>
                 <i class="bi bi-chevron-down dropdown-indicator"></i
               ></a>
               <ul>
-                <li><a href="/romax10" class="dropdown-item">Romax Homes 10</a></li>
+                <li ><a href="/romax10" >Romax Homes 10</a></li>
                 <li><a href="#">Dropdown 2</a></li>
                 <li><a href="#">Dropdown 3</a></li>
                 <li><a href="#">Dropdown 4</a></li>
               </ul>
             </li>
-            <li><a href="projects.html">Contact Us</a></li>
+            <li><a :class="{active : $route.name == 'Contact'}" href="/contact">Contact Us</a></li>
 
           </ul>
         </nav>
