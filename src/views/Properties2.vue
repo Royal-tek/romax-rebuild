@@ -22,7 +22,7 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item filter-remodeling" v-for="product in products" :key="product.id">
             <div class="portfolio-content h-100" v-if="product.product === 'Atlantic Ville'">
-                <img :src="product.image" class="img-fluid" style="height: 100%;" alt="">
+                <img :src="product.image" class="img-fluid"  alt="">
                 <div class="portfolio-info">
                 <h4 class="text-uppercase">{{product.status}}</h4>
                 <p>{{product.name}}</p>
