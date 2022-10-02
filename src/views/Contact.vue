@@ -110,7 +110,7 @@ export default {
         fd.append('message', this.message)
         fd.append('email', this.email)
 
-        axios.post('http://127.0.0.1:8000/api/contact/', fd)
+        axios.post('https://romax-backend-app.herokuapp.com/api/contact/', fd)
         .then(response =>{
           this.status = "Message sent successfully"
           setInterval(()=>{

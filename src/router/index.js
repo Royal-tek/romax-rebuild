@@ -4,9 +4,9 @@ import About from '../views/About.vue'
 import Contact from '../views/Contact.vue'
 // import Projects from '../views/Projects.vue'
 import Properties1 from '../views/Properties1.vue'
-// import Properties2 from '../views/Properties2.vue'
-// import Properties3 from '../views/Properties3.vue'
-// import Properties4 from '../views/Properties4.vue'
+import Properties2 from '../views/Properties2.vue'
+import Properties3 from '../views/Properties3.vue'
+import Properties4 from '../views/Properties4.vue'
 import Property from '../views/Property.vue'
 
 const routes = [
@@ -35,21 +35,21 @@ const routes = [
     name: 'Properties1',
     component: Properties1
   },
-  // {
-  //   path: '/atlanticville',
-  //   name: 'Properties2',
-  //   component: Properties2
-  // },
-  // {
-  //   path: '/imperialoak',
-  //   name: 'Properties3',
-  //   component: Properties3
-  // },
-  // {
-  //   path: '/romax12',
-  //   name: 'Properties4',
-  //   component: Properties4
-  // },
+  {
+    path: '/atlanticville',
+    name: 'Properties2',
+    component: Properties2
+  },
+  {
+    path: '/imperialoak',
+    name: 'Properties3',
+    component: Properties3
+  },
+  {
+    path: '/romax12',
+    name: 'Properties4',
+    component: Properties4
+  },
   {
     path: '/property/:id',
     name: 'Property',

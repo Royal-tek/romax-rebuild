@@ -30,9 +30,9 @@
               ></a>
               <ul>
                 <li ><a href="/romax10" >Romax Homes 10</a></li>
-                <li><a href="#">Dropdown 2</a></li>
-                <li><a href="#">Dropdown 3</a></li>
-                <li><a href="#">Dropdown 4</a></li>
+                <li><a href="/atlanticville">Atlantic Ville</a></li>
+                <li><a href="/imperialoak">Imperial Oak</a></li>
+                <li><a href="/romax12">Romax Homes 12</a></li>
               </ul>
             </li>
             <li><a :class="{active : $route.name == 'Contact'}" href="/contact">Contact Us</a></li>

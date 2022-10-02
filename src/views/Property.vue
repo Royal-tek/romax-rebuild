@@ -17,13 +17,16 @@
          <!-- ======= Projet Details Section ======= -->
     <section id="project-details" class="project-details">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="img-holder" >
+                    <img :src='product.image' style="width:100%; height: 100%;" class="img-fluid img-responsive" alt="">
+                </div>
 
-        <div class="position-relative h-100">
+        <!-- <div class="position-relative h-100">
           <div class="slides-1 portfolio-details-slider swiper">
             <div class="swiper-wrapper align-items-center">
 
               <div class="swiper-slide">
-                <img src="/assets/images/14.jpg" alt="">
+                <img :src="product.image" alt="">
               </div>
 
             </div>
@@ -31,7 +34,7 @@
           </div>
           
 
-        </div>
+        </div> -->
 
         <div class="row justify-content-between gy-4 mt-4">
 
@@ -96,7 +99,7 @@
         <div class="row gy-4">
             <div class="col-lg-4 col-md-6 " data-aos="zoom-in" data-aos-delay="100">
             <h3 style="color: #feb900;">Property Type</h3>
-            <h4>{{product.property_type}}</h4>
+            <h4 class="text-capitalize">{{product.property_type}}</h4>
             
           </div><!-- End feature item-->
             
@@ -197,7 +200,7 @@ export default {
     methods : {
         getProduct(){
             let id = this.$route.params.id
-            axios.get(`http://127.0.0.1:8000/api/product/${id}`)
+            axios.get(`https://romax-backend-app.herokuapp.com/api/product/${id}`)
             .then(response => {
                 this.product = response.data
                 console.log(response.data)
